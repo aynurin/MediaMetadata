@@ -71,22 +71,33 @@
     <EmbeddedResource Include="BMP\Data\685x610x24.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="PNG\Data\1148x731x8.bmp" />
+    <EmbeddedResource Include="PNG\Data\Adele+PNG.png" />
+    <EmbeddedResource Include="PNG\Data\DarkBlueRaysRevGradientPNG.png" />
+    <EmbeddedResource Include="PNG\Data\PNG-Map_118230550922074.png" />
+    <EmbeddedResource Include="PNG\Data\png.png" />
+    <EmbeddedResource Include="PNG\Data\rotatetrans.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="PNG\Data\200x200x24.bmp" />
+    <EmbeddedResource Include="PNG\Data\Adele+PNG2.png" />
+    <EmbeddedResource Include="PNG\Data\Adele+PNG3.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="PNG\Data\2560x1600x24.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="PNG\Data\512x512x24.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="PNG\Data\631x701x32.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="PNG\Data\685x610x24.bmp" />
+    <EmbeddedResource Include="PNG\Data\tux-c-24-t0-i0.png" />
+    <EmbeddedResource Include="PNG\Data\tux-c-24-t0-i1.png" />
+    <EmbeddedResource Include="PNG\Data\tux-c-24-t1-i0.png" />
+    <EmbeddedResource Include="PNG\Data\tux-c-24-t1-i1.png" />
+    <EmbeddedResource Include="PNG\Data\tux-c-8-t0-i0.png" />
+    <EmbeddedResource Include="PNG\Data\tux-c-8-t0-i1.png" />
+    <EmbeddedResource Include="PNG\Data\tux-c-8-t1-i0.png" />
+    <EmbeddedResource Include="PNG\Data\tux-c-8-t1-i1.png" />
+    <EmbeddedResource Include="PNG\Data\tux-g-24-t0-i0.png" />
+    <EmbeddedResource Include="PNG\Data\tux-g-24-t0-i1.png" />
+    <EmbeddedResource Include="PNG\Data\tux-g-24-t1-i0.png" />
+    <EmbeddedResource Include="PNG\Data\tux-g-24-t1-i1.png" />
+    <EmbeddedResource Include="PNG\Data\tux-g-8-t0-i0.png" />
+    <EmbeddedResource Include="PNG\Data\tux-g-8-t0-i1.png" />
+    <EmbeddedResource Include="PNG\Data\tux-g-8-t1-i0.png" />
+    <EmbeddedResource Include="PNG\Data\tux-g-8-t1-i1.png" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

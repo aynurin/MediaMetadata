@@ -11,19 +11,21 @@ namespace MediaMetadata.PNG
         {
         }
 
-        public NGChunk NextChunk()
+        public NGChunk NextChunk(NGChunk previous = null)
         {
             var r = GetBinaryReader();
+            if (previous != null)
+                r.BaseStream.Position = previous.DataOffset + previous.DataLength + 4;
             var pos = r.BaseStream.Position;
             if (pos + 12 < r.BaseStream.Length)
             {
                 var ch = new NGChunk
                 {
-                    DataLength = r.ReadInt32(),
+                    DataLength = r.ReadLittleEndianInt32(),
                     ChunkType = Encoding.ASCII.GetString(r.ReadBytes(4)),
                     DataOffset = r.BaseStream.Position
                 };
-                if (ch.DataLength + ch.DataLength + 4 <= r.BaseStream.Length)
+                if (ch.DataOffset + ch.DataLength + 4 <= r.BaseStream.Length)
                 {
                     r.BaseStream.Seek(ch.DataLength, SeekOrigin.Current);
                     ch.CRC = r.ReadInt32();
@@ -54,7 +56,10 @@ namespace MediaMetadata.PNG
             internal bool Validate()
             {
                 var crc32 = new Crc32();
-                var bytes = crc32.ComputeHash(this.Data);
+                var checkData = new byte[4 + this.DataLength];
+                Array.Copy(Encoding.ASCII.GetBytes(this.ChunkType), checkData, 4);
+                Array.Copy(this.Data, 0, checkData, 4, this.Data.Length);
+                var bytes = crc32.ComputeHash(checkData);
                 if (!BitConverter.IsLittleEndian)
                     Array.Reverse(bytes);
                 var crc = BitConverter.ToInt32(bytes, 0);

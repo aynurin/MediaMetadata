@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 
 namespace MediaMetadata.PNG
@@ -16,6 +17,26 @@ namespace MediaMetadata.PNG
         public ColorType ColorType;
         public byte FilterMethod;
         public InterlaceMethod InterlaceMethod;
+
+        internal void DebugWrite()
+        {
+#if DEBUG
+            Debug.Indent();
+            Debug.WriteLine("ImageWidth: " + ImageWidth);
+            Debug.WriteLine("ImageHeight: " + ImageHeight);
+            Debug.WriteLine("BitDepth: " + BitDepth);
+            Debug.WriteLine("ColorType: " + ColorType);
+            Debug.WriteLine("FilterMethod: " + FilterMethod);
+            Debug.WriteLine("InterlaceMethod: " + InterlaceMethod);
+            Debug.Unindent();
+#endif
+        }
+
+        internal void FixByteOrder()
+        {
+            ImageHeight = ImageHeight.ReverseBytes();
+            ImageWidth = ImageWidth.ReverseBytes();
+        }
     }
 
     [Flags]

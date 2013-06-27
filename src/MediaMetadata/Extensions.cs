@@ -62,5 +62,32 @@ namespace MediaMetadata
             var thisBytes = s.PeekBytes(thatBytes.Length);
             return thisBytes.StartsWith(thatBytes);
         }
+
+        public static short ReadLittleEndianInt16(this BinaryReader binaryReader)
+        {
+            var bytes = new byte[sizeof(short)];
+            for (int i = 0; i < sizeof(short); i += 1)
+            {
+                bytes[sizeof(short) - 1 - i] = binaryReader.ReadByte();
+            }
+            return BitConverter.ToInt16(bytes, 0);
+        }
+
+        public static int ReadLittleEndianInt32(this BinaryReader binaryReader)
+        {
+            var bytes = new byte[sizeof(int)];
+            for (int i = 0; i < sizeof(int); i += 1)
+            {
+                bytes[sizeof(int) - 1 - i] = binaryReader.ReadByte();
+            }
+            return BitConverter.ToInt32(bytes, 0);
+        }
+
+        public static int ReverseBytes(this int num)
+        {
+            var bytes = BitConverter.GetBytes(num);
+            Array.Reverse(bytes);
+            return BitConverter.ToInt32(bytes, 0);
+        }
     }
 }

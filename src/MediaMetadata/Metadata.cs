@@ -6,9 +6,9 @@ namespace MediaMetadata
 {
     public abstract class Metadata
     {
-        public string MimeType { get; set; }
-        public ContentCategory ContentCategory { get; set; }
-        public Size Size { get; set; }
+        public string MimeType;
+        public ContentCategory ContentCategory;
+        public Size Size;
         public List<Frame> Frames { get; private set; }
 
         protected Metadata()
@@ -19,9 +19,12 @@ namespace MediaMetadata
 
     public sealed class ImageMetadata : Metadata
     {
-        public PixelFormat PixelFormat { get; set; }
-        public ImageFormat ImageFormat { get; set; }
-        public short BitsPerPixel { get; set; }
+        public PixelFormat PixelFormat;
+        public ImageFormat ImageFormat;
+        public short BitsPerPixel;
+        public bool HasTransparency;
+        public bool IsIndexed;
+        public int PaletteColorsCount;
 
         public ImageMetadata()
         {
