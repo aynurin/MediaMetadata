@@ -21,11 +21,13 @@ namespace MediaMetadata
     {
         public PixelFormat PixelFormat { get; set; }
         public ImageFormat ImageFormat { get; set; }
+        public short BitsPerPixel { get; set; }
 
         public ImageMetadata()
         {
             this.ContentCategory = ContentCategory.Image;
         }
+
     }
 
     public enum ContentCategory

@@ -1,36 +1,47 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using Contribs.aynurin;
 
 namespace MediaMetadata
 {
     public abstract class MediaParser
     {
-        public static Metadata ExtractMetadata(Stream dataStream)
+        public static Metadata Process(Stream dataStream)
         {
-            var reader = CreateContainerReader(dataStream);
-            var parser = CreateMediaParser(reader);
-            return parser.ExtractMetadata(reader);
+            var stream = dataStream.CanSeek ? dataStream : new SeekStream(dataStream);
+            try
+            {
+                var parser = MediaParserFactory.CreateParser(stream);
+                if (parser == null)
+                    throw new NotSupportedException("This data type is not supported: " +
+                                                    Encoding.ASCII.GetString(dataStream.ReadBytes(8)));
+                return parser.ExtractMetadata(stream);
+            }
+            finally
+            {
+                if (stream != dataStream)
+                    stream.Dispose();
+            }
         }
 
-        private static FileReader CreateContainerReader(Stream dataStream)
+        public abstract bool CanParse(Stream stream);
+
+        public abstract Metadata ExtractMetadata(Stream stream);
+
+        protected PixelFormat GetPixelFormat(short bpp)
         {
-            return new FileReader(dataStream);
+            switch (bpp)
+            {
+                case 1: return PixelFormat.Format1bppIndexed;
+                case 4: return PixelFormat.Format4bppIndexed;
+                case 8: return PixelFormat.Format8bppIndexed;
+                case 16: return PixelFormat.Format16bppArgb1555;
+                case 24: return PixelFormat.Format24bppRgb;
+                case 32: return PixelFormat.Format32bppRgb;
+                default: throw new NotImplementedException("This bpp value (" + bpp + ") is not supported");
+            }
         }
-
-        private static MediaParser CreateMediaParser(FileReader reader)
-        {
-            var parser = new BMP.BMPParser();
-            if (parser.CanParse(reader))
-                return parser;
-            return null;
-        }
-
-        public abstract bool CanParse(FileReader reader);
-
-        public abstract Metadata ExtractMetadata(FileReader reader);
     }
 }

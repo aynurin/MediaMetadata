@@ -42,11 +42,21 @@
   <ItemGroup>
     <Compile Include="BMP\BMPParser.cs" />
     <Compile Include="BMP\FileHeader.cs" />
+    <Compile Include="Contribs\damieng\crc32.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="FileReader.cs" />
     <Compile Include="MediaParser.cs" />
+    <Compile Include="MediaParserFactory.cs" />
     <Compile Include="Metadata.cs" />
+    <Compile Include="PNG\FileHeader.cs" />
+    <Compile Include="PNG\NGChunksReader.cs" />
+    <Compile Include="PNG\PNGParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Contribs\SeekStream.cs" />
+    <Compile Include="UnexpectedEndOfStreamException.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Contribs\damieng\gistfile1.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

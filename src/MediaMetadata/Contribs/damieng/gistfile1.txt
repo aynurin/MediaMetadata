@@ -1,0 +1,7 @@
+Crc32 crc32 = new Crc32();
+String hashs = String.Empty;
+
+using (FileStream fs = File.Open(@"paths", FileMode.Open))
+foreach (byte b in crc32.ComputeHash(fs)) hashs += b.ToString("x2").ToLower();
+
+Console.WriteLine("CRC-32 is {0}", hashs);
