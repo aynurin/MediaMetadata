@@ -73,6 +73,18 @@ namespace MediaMetadata
             return BitConverter.ToInt16(bytes, 0);
         }
 
+        public static short ReadLittleEndianInt16(this Stream stream)
+        {
+            var bytes = stream.ReadBytes(sizeof(short)).Reverse().ToArray();
+            return BitConverter.ToInt16(bytes, 0);
+        }
+
+        public static short ReadInt16(this Stream stream)
+        {
+            var bytes = stream.ReadBytes(sizeof(short));
+            return BitConverter.ToInt16(bytes, 0);
+        }
+
         public static int ReadLittleEndianInt32(this BinaryReader binaryReader)
         {
             var bytes = new byte[sizeof(int)];

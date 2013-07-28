@@ -52,6 +52,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="BMP\BMPParserTest.cs" />
+    <Compile Include="JPG\JPGParserTest.cs" />
     <Compile Include="PNG\PNGParserTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SeekStream\SeekStreamTests.cs" />
@@ -98,6 +99,17 @@
     <EmbeddedResource Include="PNG\Data\tux-g-8-t0-i1.png" />
     <EmbeddedResource Include="PNG\Data\tux-g-8-t1-i0.png" />
     <EmbeddedResource Include="PNG\Data\tux-g-8-t1-i1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="JPG\Data\1024x768_1000.jpg" />
+    <EmbeddedResource Include="JPG\Data\7265.jpg" />
+    <EmbeddedResource Include="JPG\Data\DSC_0007.JPG" />
+    <EmbeddedResource Include="JPG\Data\earth-snoopy_sophie-32847173-2560-1600.jpg" />
+    <EmbeddedResource Include="JPG\Data\img002.jpg" />
+    <EmbeddedResource Include="JPG\Data\obliv04B.jpg" />
+    <EmbeddedResource Include="JPG\Data\obliv_obliviongate640.jpg" />
+    <EmbeddedResource Include="JPG\Data\ob_concept01B.jpg" />
+    <EmbeddedResource Include="JPG\Data\ob_concept12B.jpg" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

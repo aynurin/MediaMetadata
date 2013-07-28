@@ -5,16 +5,17 @@ using System.Reflection;
 namespace MediaMetadata.Tests
 {
     [TestClass]
-    public class PngParserTest
+    public class JpgParserTest
     {
         [TestMethod]
         public void ProcessTestFiles()
         {
+            int processed = 0;
             var asm = Assembly.GetExecutingAssembly();
             var files = asm.GetManifestResourceNames();
             foreach (var file in files)
             {
-                if (file.EndsWith(".png"))
+                if (file.EndsWith(".jpg"))
                 {
                     using (var s = asm.GetManifestResourceStream(file))
                     using (var s2 = asm.GetManifestResourceStream(file))
@@ -26,9 +27,11 @@ namespace MediaMetadata.Tests
                         Assert.AreEqual(m1.Size.Height, img.Size.Height);
                         Assert.AreEqual(m1.PixelFormat, img.PixelFormat);
                         //Assert.AreEqual(m1.ImageFormat, img.RawFormat);
+                        processed++;
                     }
                 }
             }
+            Assert.IsTrue(processed > 0);
         }
     }
 }
